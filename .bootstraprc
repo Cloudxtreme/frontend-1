@@ -106,4 +106,4 @@ styles:
 
 
 ### Bootstrap scripts
-scripts: false
+scripts: true
