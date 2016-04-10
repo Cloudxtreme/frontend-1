@@ -15,6 +15,7 @@ if (!production) {
             test:   /\.js/,
             loader: 'babel',
             include: __dirname + '/src',
+            exclude: /node_modules/
         },
         {
             test:   /\.html/,
@@ -138,7 +139,7 @@ module.exports = {
     debug:   !production,
     devtool: production ? false : 'eval',
     entry:  [
-        production ?  'bootstrap-loader/extractStyles' : 'bootstrap-loader',
+        'bootstrap-loader',
         'font-awesome-loader',
         './src',
     ],
