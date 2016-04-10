@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "webpack-dev-server --inline --hot",
+    "start": "webpack-dev-server --inline --hot",
     "build": "webpack",
-    "build:prod": "NODE_ENV=production webpack"
+    "build:prod": "NODE_ENV=production webpack",
+    "analyzer": "webpack --profile --json > stats.json"
   },
   "author": "Brady Vitrano",
   "license": "Apache-2.0",
   "devDependencies": {
+    "clean-webpack-plugin": "^0.1.8",
     "extract-text-webpack-plugin": "^1.0.1",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1"

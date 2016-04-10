@@ -11,11 +11,10 @@ cd frontend
 npm install
 export PATH=node_modules/.bin:$PATH
 # development with live reload
-npm run server
+npm run start
 # or production
 npm run build:prod
 ```
-
 
 ## Directory Structure
 
@@ -51,8 +50,9 @@ npm run build:prod
 ## Other Commands
 
 ```
+npm run analyzer
+# upload stats.json to http://webpack.github.io/analyse/
 webpack --display-modules --display-chunks
-webpack --watch
 ``` 
  
 
@@ -68,11 +68,11 @@ npm install --save redux react-redux
 # styles
 npm install --save jquery bootstrap-loader bootstrap-sass
 npm install --save css-loader node-sass resolve-url-loader sass-loader style-loader url-loader
-npm install --save-dev extract-text-webpack-plugin
 # font awesome
 npm install --save font-awesome font-awesome-loader
-# server
-npm install webpack-dev-server --save-dev
+# other
+npm install --save-dev webpack-dev-server
+npm install --save-dev clean-webpack-plugin extract-text-webpack-plugin
 # Other NPM Tools: tether
 # See: Bootstrap Loader Examples
 ```

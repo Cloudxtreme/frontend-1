@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+var CleanPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 var production = process.env.NODE_ENV === 'production';
 
@@ -89,7 +90,10 @@ if (production) {
 
     /** Production Plugins **/
     plugins = plugins.concat([
-        new ExtractTextPlugin('web.css', { allChunks: true }),
+        // clean up the builds/ folder before compiling
+        new CleanPlugin('builds'),
+        // pipe all css into one file
+        new ExtractTextPlugin('[name]-[hash].css', { allChunks: true }),
         // This plugin looks for similar chunks and files
         // and merges them for better caching by the user
         new webpack.optimize.DedupePlugin(),
@@ -140,7 +144,7 @@ module.exports = {
     ],
     output: {
         path:     'builds',
-        filename: 'web.js',
+        filename:  production ? '[name]-[hash].js' : 'web.js',
         publicPath: 'builds/',
     },
     plugins: plugins,
