@@ -8,7 +8,7 @@ Expect this to change in the near future as javascript and I continue to evolve.
 git clone git@github.com:brady-vitrano/frontend.git
 cd frontend
 npm install
-npm run start
+npm start
 # http://localhost:4000/
 ```
 
