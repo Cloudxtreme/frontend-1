@@ -1,14 +1,14 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { Provider } from 'react-redux'
-import store from './store';
-import'./themes/default/css/main.scss';
+import './themes/default/css/main.scss';
+import '../node_modules/react-bootstrap-datetimepicker/css/bootstrap-datetimepicker.css';
 
-if (document.querySelectorAll('#header').length) {
-    require.ensure([], () => {
-        const Header = require('./module/default/components/header').default;
-        render(<Provider store={store}><Header /></Provider>, document.getElementById("header"))
-    }, 'header');
+// all required modules
+require('./module/common/entry');
+
+// add some better method for changing build for environment
+if (process.env.NODE_ENV === 'production') {
+    // production only modules
+} else {
+    // development only modules
 }
-
-

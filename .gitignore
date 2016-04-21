@@ -1,5 +1,6 @@
 .idea
 builds
+dist
 node_modules
 stats.json
 *.log

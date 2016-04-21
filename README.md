@@ -1,79 +1,54 @@
-# ReactJS + Redux + WebPack + Bootstrap
+# ReactJS + Redux + WebPack + ES6 + Bootstrap
 
-I hate javascript build tools but here is a combination that works for me for now.
-Expect this to change in the near future as javascript continues to evolve.
+Expect this to change in the near future as javascript and I continue to evolve.
 
-## Build
+## Getting Started
 
 ```
 git clone git@github.com:brady-vitrano/frontend.git
 cd frontend
 npm install
-export PATH=node_modules/.bin:$PATH
-# development with live reload
 npm run start
-# or production
+# http://localhost:4000/
+```
+
+## React + Redux
+
+Unfortunately, there are tons of strategies for building projects with these libraries. My goals are simple, 
+create a project that has some structure for enterprise environments and can be adapted overtime. Changes such as
+themes, AB testing, feature flags, and separate builds for various destinations.
+
+## Running a Build
+
+To run a production build
+
+```
 npm run build:prod
 ```
 
-## Directory Structure
+All build files will be placed in the `dist` directory with the following structure:
 
-```
-├── src # place all source here, including SASS, CSS, JS, HTML Templates 
-│   ├── index.js # entry file for the app
-│   ├── module # instead of a folder for all my reducers, I am using modules to keep it organized
-│   │   ├── default # site wide stuff
-│   │   │   ├── actionTypes.js
-│   │   │   ├── actions.js
-│   │   │   ├── components
-│   │   │   │   ├── header.js
-│   │   │   │   └── welcome.js
-│   │   │   └── containers
-│   │   │       └── CustomMessage.js
-│   │   └── example # custom module supplies it's own reducers, actions, components and containers
-│   │       ├── actionTypes.js
-│   │       ├── actions.js
-│   │       ├── components
-│   │       │   └── example.js
-│   │       ├── containers
-│   │       │   └── example.js
-│   │       └── reducers.js
-│   ├── reducers.js # combine reducers from all modules together. why not make this dynamic? for simplicity
-│   ├── store.js # the only state store for the website
-│   └── themes # again, keeping themes in modules
-│       └── default
-│           └── css
-│               └── main.scss # using sass
-└── webpack.config.js # one file for both development and production settings. It's a mess of duplication.
-```
+* `dist/` - all common files such as (svg, ttf, eot)
+* `dist/<version>/latest.css` - where version is pulled from `package.json`
+* `dist/<version>/latest.js` 
 
-## Other Commands
-
-```
-npm run analyzer
-# upload stats.json to http://webpack.github.io/analyse/
-webpack --display-modules --display-chunks
-``` 
+This forces all your static files to live in the root path of your website. However, what if you want to host on a CDN?
+ie. http://cdn.example.com
  
-
-## Manual Installation of Node Modules
+You can add the environment variable `TARGET_URL` and it will be appended to the front of your public path.
 
 ```
-sudo npm install webpack -g
-npm init
-npm install --save-dev webpack 
-npm install --save react react-dom babel-core babel-preset-react babel-preset-es2015
-npm install --save babel-loader html-loader imports-loader
-npm install --save redux react-redux
-# styles
-npm install --save jquery bootstrap-loader bootstrap-sass
-npm install --save css-loader node-sass resolve-url-loader sass-loader style-loader url-loader
-# font awesome
-npm install --save font-awesome font-awesome-loader
-# other
-npm install --save-dev webpack-dev-server
-npm install --save-dev clean-webpack-plugin extract-text-webpack-plugin
-# Other NPM Tools: tether
-# See: Bootstrap Loader Examples
+TARGET_URL=http://cdn.example.com npm run build:prod
 ```
 
+You can now upload all `dist` files into your CDN site with all common files at the root and a version path for latest resources.
+ie. http://cdn.example.com/1.0.0/latest.css
+
+Now, if you want to use a separate public path such as a `/static` directory, you can change the public path in `webpack.prod.js`  
+`publicPath: TARGET_URL + '/static'`.
+
+An alternative method without changing the webpack config is to simply set `TARGET_URL` with `/static`. 
+
+Example: `TARGET_URL=dist npm run build:prod` now open `production.html`
+
+ 

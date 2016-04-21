@@ -1,25 +1,10 @@
 import { combineReducers } from 'redux';
-import example from './module/example/reducers';
-import { UPDATE_NAME } from './module/default/actionTypes'
-
-let initialState = {
-    name: 'Guest'
-};
-
-function main(state = initialState, action){
-    switch (action.type) {
-        case UPDATE_NAME:
-            return Object.assign({}, state, {
-                name: action.name
-            });
-        default:
-            return state;
-    }
-}
+import { routerReducer as routing } from 'react-router-redux';
+import common from './module/common/reducers';
 
 const app = combineReducers({
-    main,
-    example
+    routing,
+    common
 });
 
 export default app;
