@@ -67,7 +67,7 @@ You can see the example configurations in the `docker` folder. I have two differ
 I opted to proxy pass all assets to the `assets` container. This is for convenience because Docker VM can be on various IPs.
 See `docker/website/files/usr/share/nginx/html/index.html`.
 
-You will notice, I am using URL paths without a trailing slash. If you would like trialing slash, 
+You will notice, I am using URL paths without a trailing slash. If you would like trailing slash, 
 you can change the redirect in `docker/website/files/etc/nginx/conf.d/default.conf`.
  
  
