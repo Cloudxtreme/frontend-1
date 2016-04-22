@@ -49,6 +49,25 @@ Now, if you want to use a separate public path such as a `/static` directory, yo
 
 An alternative method without changing the webpack config is to simply set `TARGET_URL` with `/static`. 
 
-Example: `TARGET_URL=dist npm run build:prod` now open `production.html`
+ 
+## Clean URLs
 
+So you want clean URLs for a single page application?
+
+```
+TARGET_URL=dist npm run build:prod
+docker-compose up
+# visit http://192.168.99.100:4000/
+# optionally: http://192.168.99.100:4000/about
+```
+
+I am using Docker here to demonstrate the settings required on the server.
+
+You can see the example configurations in the `docker` folder. I have two different containers to mimic assets and a website. 
+I opted to proxy pass all assets to the `assets` container. This is for convenience because Docker VM can be on various IPs.
+See `docker/website/files/usr/share/nginx/html/index.html`.
+
+You will notice, I am using URL paths without a trailing slash. If you would like trialing slash, 
+you can change the redirect in `docker/website/files/etc/nginx/conf.d/default.conf`.
+ 
  

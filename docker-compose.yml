@@ -1,0 +1,12 @@
+version: '2'
+services:
+  assets:
+    build: docker/assets
+    volumes:
+     - $PWD/dist:/usr/share/nginx/html/dist
+  website:
+    build: docker/website
+    links:
+    - assets:cdn.example.com
+    ports:
+    - "4000:80"

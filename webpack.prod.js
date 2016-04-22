@@ -20,7 +20,7 @@ module.exports = {
     },
     plugins: [
         // clean up the builds/ folder before compiling
-        new CleanPlugin('builds'),
+        new CleanPlugin('dist'),
         // pipe all css into one file
         new ExtractTextPlugin(version + '/latest.css', { allChunks: true }),
         // This plugin looks for similar chunks and files

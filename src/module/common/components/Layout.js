@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react'
+import { Link } from 'react-router'
 
 export default class Layout extends Component {
 
@@ -8,7 +9,7 @@ export default class Layout extends Component {
             <div className="container">
                 <div id="cp-side-menu" className="col-md-2">
                     <ul className="list-group">
-                        <a href="#" className="list-group-item">About</a>
+                        <Link to={`/about`} className="list-group-item">About</Link>
                         <a href="#" className="list-group-item">Blog</a>
                         <a href="#" className="list-group-item">News</a>
                         <a href="#" className="list-group-item">Support</a>
