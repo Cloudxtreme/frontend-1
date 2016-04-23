@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
-import common from './module/common/reducers';
 
-const app = combineReducers({
+export default combineReducers({
     routing,
-    common
+    common: require('./module/common/reducers').default,
+    store: require('./module/store/reducers').default
 });
-
-export default app;

@@ -9,6 +9,7 @@ let middleware, historyStrategy;
 if (process.env.NODE_ENV === 'production') {
     historyStrategy = browserHistory;
 } else {
+    // its not really needed to use hashHistory for development, its just for demonstration
     historyStrategy = hashHistory;
 }
 

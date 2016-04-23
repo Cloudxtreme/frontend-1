@@ -6,7 +6,7 @@ export default class Header extends Component {
         const { title, subtitle } = this.props;
 
         return (
-            <div>
+            <div className="row">
                 <div class="page-header">
                     <h1>{ title } { subtitle ? <small>{subtitle}</small> : '' }</h1>
                 </div>

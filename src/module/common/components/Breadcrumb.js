@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react'
+import { Link } from 'react-router'
 
 export default class Breadcrumb extends Component {
 
@@ -8,10 +9,10 @@ export default class Breadcrumb extends Component {
             if (breadcrumb.active) {
                 return breadcrumb.title
             }
-            return <a href={breadcrumb.href}>{ breadcrumb.title }</a>
+            return <Link to={breadcrumb.href}>{ breadcrumb.title }</Link>
         });
         return (
-            <ol className="breadcrumb">
+            <ol className="row breadcrumb">
                 { links.map((link, i) =>
                     <li key={i} className={link.active ? 'active' : ''}>
                         { link }

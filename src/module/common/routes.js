@@ -1,11 +1,8 @@
-import React from 'react'
-import { Route, IndexRoute, Redirect } from 'react-router'
-import Home from './containers/Home';
-import About from './components/About';
-
-export default (
-    <Route path="/">
-        <IndexRoute component={Home} />
-        <Route path="about" component={About} />
-    </Route>
-)
+module.exports = {
+    path: 'about',
+    getComponent(nextState, cb) {
+        require.ensure([], (require) => {
+            cb(null, require('./components/About').default)
+        })
+    }
+};
